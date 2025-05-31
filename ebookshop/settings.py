@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-+#lxqu_#t)w%5lo50n)qbq8&(*i6a)_2%#z-c+=ld7pcqk_4=9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allowed hosts explicitly defined for Codespaces preview domain
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ubiquitous-adventure-wrr54qrg7wg9hxp-8000.app.github.dev']
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Trusted origin added based on my actual Codespaces preview URL
+CSRF_TRUSTED_ORIGINS = ['https://ubiquitous-adventure-wrr54qrg7wg9hxp-8000.app.github.dev']

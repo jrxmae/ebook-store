@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoReads - eBook Store</title>
+</head>
+<body>
+    <h1>Welcome to EchoReads</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                <h2>{{ book.title }}</h2>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Price:</strong> €{{ book.price }}</p>
+                <p>{{ book.description }}</p>
+            </li>
+        {% empty %}
+            <li>No books available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

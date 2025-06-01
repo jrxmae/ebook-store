@@ -116,7 +116,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
+
+# Media files (user-uploaded images)
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -124,4 +131,4 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Trusted origin added based on my actual Codespaces preview URL
-CSRF_TRUSTED_ORIGINS = ['https://ubiquitous-adventure-wrr54qrg7wg9hxp-8000.app.github.dev']
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'https://*.github.dev', 'https://.codespaces.github.com', 'https://ubiquitous-adventure-wrr54qrg7wg9hxp-8000.app.github.dev', 'https://localhost:8000']

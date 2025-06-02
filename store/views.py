@@ -81,3 +81,35 @@ def decrease_quantity(request, book_id):
             cart.pop(str(book_id))
     request.session['cart'] = cart
     return redirect('view_cart')
+
+from django.contrib import messages
+
+def checkout(request):
+    cart = request.session.get('cart', {})
+    cart_items = []
+    total = 0
+
+    # Loop through cart dict
+    for book_id, quantity in cart.items():
+        try:
+            book = Book.objects.get(id=book_id)
+        except Book.DoesNotExist:
+            continue
+        subtotal = book.price * quantity
+        cart_items.append({
+            'book': book,
+            'quantity': quantity,
+            'subtotal': subtotal,
+        })
+        total += subtotal
+
+    # A fake checkout - no payment, clears cart afterwards
+    if request.method == 'POST':
+        request.session['cart'] = {}
+        messages.success(request, "Thank you for your purchase!")
+        return redirect('book_list')
+
+    return render(request, 'store/checkout.html', {
+        'cart_items': cart_items,
+        'total': total,
+    })

@@ -17,9 +17,9 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for book in books %}
         <div class="col">
-            <div class="card h-100 shadow-sm>
+            <div class="card h-100 shadow-sm">
                 {% if book.image %}
-                <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                <img src="{{ book.image.url }}" class="card-img-top img-fluid" alt="{{ book.title }}" style="height: 300px; object-fit: cover;">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ book.title }}</h5>

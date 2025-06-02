@@ -53,8 +53,12 @@ def add_to_cart(request, book_id):
 def remove_from_cart(request, book_id):
     cart = request.session.get('cart', {})
 
+    # Decrease quantity of books in cart or remove if only one is left
     if str(book_id) in cart:
-        del cart[str(book_id)]
-        request.session['cart'] = cart # Saves changes
+        if cart[str(book_id)] > 1:
+            cart[str(book_id)] -= 1 
+        else:
+            cart.pop(str(book_id)) 
 
+    request.session['cart'] = cart
     return redirect('view_cart')

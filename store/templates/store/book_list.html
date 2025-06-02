@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_extras %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +16,8 @@
             <span class="navbar-brand mb-0 h1">EchoReads</span>
             <a href="{% url 'view_cart' %}" class="btn btn-outline-primary">
                 View Cart
-                {% if request.session.cart %}
-                    ({{ request.session.cart|length }} items)
-                {% else %}
-                    (0 items)
-                {% endif %}
+                <!-- Use custom filter to show total quantity of books in cart -->
+                ({{ request.session.cart|cart_total_quantity }} items)
             </a>
         </div>
     </nav>

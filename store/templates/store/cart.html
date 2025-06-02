@@ -29,7 +29,15 @@
             <tr>
                 <td>{{ item.book.title }}</td>
                 <td>{{ item.quantity }}</td>
-                <td>€{{ item.subtotal }}</td>
+                <td>
+                    €{{ item.subtotal }}
+
+                    <!-- Form to remove a book from the cart -->
+                    <form action="{% url 'remove_from_cart' item.book.id %}" method="post" class="d-inline ms-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

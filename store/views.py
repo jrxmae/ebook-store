@@ -48,3 +48,13 @@ def add_to_cart(request, book_id):
 
     request.session['cart'] = cart
     return redirect('book_list')
+
+# View funciton to remove a book from the shopping cart based on its ID
+def remove_from_cart(request, book_id):
+    cart = request.session.get('cart', {})
+
+    if str(book_id) in cart:
+        del cart[str(book_id)]
+        request.session['cart'] = cart # Saves changes
+
+    return redirect('view_cart')

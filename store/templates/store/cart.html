@@ -28,7 +28,17 @@
             {% for item in cart_items %}
             <tr>
                 <td>{{ item.book.title }}</td>
-                <td>{{ item.quantity }}</td>
+                <td>
+                    <form action="{% url 'decrease_quantity' item.book.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-outline-secondary">-</button>
+                    </form>
+                    <span class="mx-2">{{ item.quantity }}</span>
+                    <form action="{% url 'increase_quantity' item.book.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-outline-secondary">+</button>
+                    </form>
+                </td>
                 <td>
                     €{{ item.subtotal }}
 

@@ -62,3 +62,22 @@ def remove_from_cart(request, book_id):
 
     request.session['cart'] = cart
     return redirect('view_cart')
+
+# View to increase quantity of a book in the cart
+def increase_quantity(request, book_id):
+    cart = request.session.get('cart', {})
+    if str(book_id) in cart:
+        cart[str(book_id)] += 1
+    request.session['cart'] = cart
+    return redirect('view_cart')
+
+# View to decrease quantity of a book in the cart
+def decrease_quantity(request, book_id):
+    cart = request.session.get('cart', {})
+    if str(book_id) in cart:
+        if cart[str(book_id)] > 1:
+            cart[str(book_id)] -= 1
+        else:
+            cart.pop(str(book_id))
+    request.session['cart'] = cart
+    return redirect('view_cart')

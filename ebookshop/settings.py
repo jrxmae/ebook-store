@@ -56,7 +56,7 @@ ROOT_URLCONF = "ebookshop.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -133,3 +133,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Trusted origin added based on my actual Codespaces preview URL
 CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'https://*.github.dev', 'https://.codespaces.github.com', 'https://ubiquitous-adventure-wrr54qrg7wg9hxp-8000.app.github.dev', 'https://localhost:8000']
+
+LOGIN_URL = 'login'

@@ -1,3 +1,4 @@
+from .views import signup
 from django.urls import path
 from . import views
 
@@ -12,5 +13,6 @@ urlpatterns = [
     path('increase/<int:book_id>/', views.increase_quantity, name='increase_quantity'),
     path('decrease/<int:book_id>/', views.decrease_quantity, name='decrease_quantity'),
     path('checkout/', views.checkout, name='checkout'),
+    path('signup/', signup, name='signup'),
     
 ]

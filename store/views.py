@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
+
 
 # Create your views here.
 def book_list(request):
@@ -84,6 +86,7 @@ def decrease_quantity(request, book_id):
 
 from django.contrib import messages
 
+@login_required
 def checkout(request):
     cart = request.session.get('cart', {})
     cart_items = []
@@ -113,3 +116,19 @@ def checkout(request):
         'cart_items': cart_items,
         'total': total,
     })
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
+# View to handle user signup using Django's built in UserCreationForm
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user) # Log in the user immediately after signup
+            messages.success(request, "Account created successfully!")
+            return redirect('book_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'store/signup.html', {'form': form})

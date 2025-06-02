@@ -14,11 +14,22 @@
     <nav class="navbar navbar-light bg-light mb-4">
         <div class="container-fluid justify-content-between">
             <span class="navbar-brand mb-0 h1">EchoReads</span>
-            <a href="{% url 'view_cart' %}" class="btn btn-outline-primary">
-                View Cart
-                <!-- Use custom filter to show total quantity of books in cart -->
-                ({{ request.session.cart|cart_total_quantity }} items)
-            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="{% url 'view_cart' %}" class="btn btn-outline-primary">
+                    View Cart
+                    <!-- Use custom filter to show total quantity of books in cart -->
+                    ({{ request.session.cart|cart_total_quantity }} items)
+                </a>
+
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+                {% endif %}
+            </div>
         </div>
     </nav>
 <div class="container py-5">

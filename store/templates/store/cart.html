@@ -1,0 +1,47 @@
+<!-- Template to display the contents of the user's cart -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <!-- Bootstrap CDN for styling -->
+     <link rel="stylesheet" href="https://cdn.jsdeliver.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container py-5">
+    <h1 class="mb-4">Your Cart</h1>
+
+    <!-- Check if the cart has items -->
+     {% if cart_items %}
+     <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each item in the cart and display book info -->
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.book.title }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>€{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+     </table>
+
+     <!-- Display the total price of all cart items -->
+     <h4>Total: €{{ total }}</h4>
+     {% else %}
+     <!-- Message if the cart is empty -->
+     <p>Your cart is empty.</p>
+     {% endif %}
+</div>
+    
+</body>
+</html>
